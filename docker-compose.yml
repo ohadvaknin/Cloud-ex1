@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  parking-system:
+    build: .
+    container_name: parking-lot-system
+    volumes:
+      - .:/app
+      - ~/.aws:/root/.aws:ro  # Mount AWS credentials (read-only)
+    environment:
+      - PYTHONPATH=/app/src
+      - AWS_DEFAULT_REGION=us-east-1
+    working_dir: /app
+    stdin_open: true
+    tty: true
+    command: /bin/bash
+
+  # DynamoDB Local for testing
+  dynamodb-local:
+    image: amazon/dynamodb-local:latest
+    container_name: parking-dynamodb-local
+    ports:
+      - "8000:8000"
+    command: ["-jar", "DynamoDBLocal.jar", "-sharedDb", "-inMemory"]
+    
+  # Optional: LocalStack for full AWS simulation
+  localstack:
+    image: localstack/localstack:latest
+    container_name: parking-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=lambda,apigateway,dynamodb,iam,sts
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=docker
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "./tmp/localstack:/tmp/localstack"
+    profiles:
+      - localstack 
