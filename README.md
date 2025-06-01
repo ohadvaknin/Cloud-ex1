@@ -86,7 +86,7 @@ Process parking exit and calculate charges.
 
 ```bash
 git clone <repository-url>
-cd parking-lot-system
+cd Cloud-ex1
 chmod +x scripts/*.sh
 ./scripts/setup-env.sh
 ```
