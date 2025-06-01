@@ -3,8 +3,8 @@ import os
 from typing import Optional, Dict, Any
 from botocore.exceptions import ClientError
 
-from src.models.parking_ticket import ParkingTicket
-from src.services.fee_calculator import default_calculator
+from models.parking_ticket import ParkingTicket
+from services.fee_calculator import default_calculator
 
 
 class ParkingService:
