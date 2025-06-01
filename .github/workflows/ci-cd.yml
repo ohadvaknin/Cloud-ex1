@@ -8,7 +8,7 @@ on:
 
 env:
   PYTHON_VERSION: '3.12'
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-north-1
 
 jobs:
   test:
@@ -167,5 +167,5 @@ jobs:
 
     - name: Notify deployment success
       run: |
-        echo "🎉 Deployment successful!"
+        echo "Deployment successful!"
         echo "API Gateway URL: ${{ steps.get-url.outputs.api_url }}" 

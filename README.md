@@ -148,22 +148,6 @@ pytest -v
 ```
 
 
-### Docker Development
-
-```bash
-# Build and run development container
-docker-compose up -d parking-system
-
-# Execute commands in container
-docker-compose exec parking-system bash
-
-# Run tests in container
-docker-compose exec parking-system pytest
-
-# Use DynamoDB Local for testing
-docker-compose up dynamodb-local
-```
-
 ## 🏗️ Infrastructure
 
 ### Terraform Resources

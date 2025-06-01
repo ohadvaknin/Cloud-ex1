@@ -16,7 +16,7 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 SRC_DIR="$PROJECT_ROOT/src"
 DIST_DIR="$PROJECT_ROOT/dist"
 
-echo -e "${GREEN}📦 Packaging Lambda function...${NC}"
+echo -e "${GREEN}Packaging Lambda function...${NC}"
 
 # Create dist directory if it doesn't exist
 mkdir -p "$DIST_DIR"
@@ -45,6 +45,6 @@ rm -rf "$TEMP_DIR"
 
 # Show package info
 PACKAGE_SIZE=$(du -h "$DIST_DIR/lambda_function.zip" | cut -f1)
-echo -e "${GREEN}✅ Lambda package created successfully!${NC}"
+echo -e "${GREEN}Lambda package created successfully!${NC}"
 echo -e "${GREEN}Package location: $DIST_DIR/lambda_function.zip${NC}"
 echo -e "${GREEN}Package size: $PACKAGE_SIZE${NC}" 
