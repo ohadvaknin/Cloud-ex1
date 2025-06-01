@@ -9,16 +9,16 @@ data "archive_file" "lambda_zip" {
 resource "aws_lambda_function" "entry_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
   function_name    = "${var.project_name}-entry"
-  role            = aws_iam_role.lambda_role.arn
-  handler         = "handlers.entry.lambda_handler"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "handlers.entry.lambda_handler"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-  runtime         = "python3.12"
-  timeout         = 30
+  runtime          = "python3.12"
+  timeout          = 30
 
   environment {
     variables = {
-      PARKING_TABLE_NAME = aws_dynamodb_table.parking_tickets.name
-      HOURLY_RATE = var.hourly_rate
+      PARKING_TABLE_NAME        = aws_dynamodb_table.parking_tickets.name
+      HOURLY_RATE               = var.hourly_rate
       BILLING_INCREMENT_MINUTES = var.billing_increment_minutes
     }
   }
@@ -34,16 +34,16 @@ resource "aws_lambda_function" "entry_lambda" {
 resource "aws_lambda_function" "exit_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
   function_name    = "${var.project_name}-exit"
-  role            = aws_iam_role.lambda_role.arn
-  handler         = "handlers.exit.lambda_handler"
+  role             = aws_iam_role.lambda_role.arn
+  handler          = "handlers.exit.lambda_handler"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
-  runtime         = "python3.12"
-  timeout         = 30
+  runtime          = "python3.12"
+  timeout          = 30
 
   environment {
     variables = {
-      PARKING_TABLE_NAME = aws_dynamodb_table.parking_tickets.name
-      HOURLY_RATE = var.hourly_rate
+      PARKING_TABLE_NAME        = aws_dynamodb_table.parking_tickets.name
+      HOURLY_RATE               = var.hourly_rate
       BILLING_INCREMENT_MINUTES = var.billing_increment_minutes
     }
   }

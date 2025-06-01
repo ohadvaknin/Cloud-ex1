@@ -18,9 +18,9 @@ provider "aws" {
 
 # DynamoDB table for parking tickets
 resource "aws_dynamodb_table" "parking_tickets" {
-  name           = var.table_name
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "ticket_id"
+  name         = var.table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "ticket_id"
 
   attribute {
     name = "ticket_id"

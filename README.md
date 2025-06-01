@@ -96,7 +96,7 @@ chmod +x scripts/*.sh
 
 ```bash
 aws configure
-# Enter your AWS Access Key ID, Secret Access Key, and region (us-east-1)
+# Enter your AWS Access Key ID, Secret Access Key, and region 
 ```
 
 ### 3. Deploy to AWS
@@ -109,7 +109,7 @@ aws configure
 
 ```bash
 # Get your API URL from deployment output
-API_URL="https://your-api-id.execute-api.us-east-1.amazonaws.com/dev"
+API_URL="https://your-api-id.execute-api.eu-north-1.amazonaws.com/dev"
 
 # Create parking entry
 curl -X POST "$API_URL/entry?plate=ABC123&parkingLot=1"
@@ -167,7 +167,7 @@ HOURLY_RATE=10.0
 BILLING_INCREMENT_MINUTES=15
 
 # AWS Configuration
-AWS_REGION=us-east-1
+AWS_REGION=eu-north-1
 ```
 
 ## 📊 Fee Calculation
@@ -217,7 +217,7 @@ AWS_SECRET_ACCESS_KEY=your-secret-key
 
 ## 🔧 Configuration
 
-### Customizing Fee Calculation
+### Customizing Fee Calculation - examples
 
 Edit `infrastructure/variables.tf`:
 
