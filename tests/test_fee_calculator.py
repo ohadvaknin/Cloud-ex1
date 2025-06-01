@@ -1,6 +1,7 @@
 import pytest
 from src.services.fee_calculator import FeeCalculator
 
+# AI generated tests
 
 class TestFeeCalculator:
     """Test cases for FeeCalculator class."""

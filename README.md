@@ -178,20 +178,6 @@ The system uses a modular fee calculator with the following rules:
   - 45 minutes → 45 minutes → $7.50
   - 50 minutes → 60 minutes → $10.00
 
-## 🔒 Security
-
-- **Input Validation**: All inputs validated and sanitized
-- **No Hardcoded Secrets**: All credentials via environment variables
-- **IAM Least Privilege**: Lambda functions have minimal required permissions
-- **CORS Enabled**: Proper CORS headers for web applications
-- **Error Handling**: Secure error messages without sensitive information
-
-## 📈 Monitoring and Logging
-
-- **CloudWatch Logs**: All Lambda function logs with 14-day retention
-- **Error Tracking**: Structured error logging with correlation IDs
-- **Metrics**: Built-in Lambda metrics (duration, errors, throttles)
-- **Alarms**: Can be configured for error rates and latency
 
 ## 🔧 Configuration
 

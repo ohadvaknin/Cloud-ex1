@@ -4,7 +4,7 @@ from unittest.mock import patch, Mock
 
 from src.handlers.exit import lambda_handler
 
-
+# AI generated tests
 class TestExitHandler:
     """Test cases for exit Lambda handler."""
 
