@@ -1,6 +1,6 @@
 # Cloud-Based Parking Lot Management System
 
-A production-ready serverless parking lot management system built with Python 3.12, AWS Lambda, API Gateway, and DynamoDB. Features automated fee calculation, comprehensive testing, and CI/CD pipeline.
+A serverless parking lot management system built with Python 3.12, AWS Lambda, API Gateway, and DynamoDB. Features automated fee calculation, and CI/CD pipeline.
 
 ## 🏗️ Architecture
 
@@ -16,7 +16,7 @@ graph TB
     EntryLambda --> CW[CloudWatch Logs]
     ExitLambda --> CW
     
-    subgraph "AWS Free Tier Compatible"
+    subgraph "AWS"
         APIGW
         EntryLambda
         ExitLambda
@@ -37,11 +37,10 @@ graph TB
 - **RESTful API**: Two endpoints for parking entry and exit
 - **Automated Fee Calculation**: $10/hour, prorated every 15 minutes
 - **Production Ready**: Comprehensive error handling, logging, and monitoring
-- **High Test Coverage**: 90%+ test coverage with pytest
+- **High Test Coverage**: with pytest
 - **CI/CD Pipeline**: GitHub Actions with automated testing and deployment
-- **Infrastructure as Code**: Terraform for reproducible deployments
+- **Infrastructure as Code**: Terraform
 - **Security**: Input validation, no hardcoded credentials
-- **Free Tier Friendly**: Optimized for AWS free tier usage
 
 ## 📋 API Endpoints
 
@@ -148,18 +147,6 @@ pytest tests/test_fee_calculator.py
 pytest -v
 ```
 
-### Code Quality
-
-```bash
-# Format code
-black src tests
-
-# Sort imports
-isort src tests
-
-# Lint code
-flake8 src tests
-```
 
 ### Docker Development
 
@@ -243,18 +230,6 @@ AWS_SECRET_ACCESS_KEY=your-secret-key
 - **Metrics**: Built-in Lambda metrics (duration, errors, throttles)
 - **Alarms**: Can be configured for error rates and latency
 
-## 💰 Cost Optimization
-
-**AWS Free Tier Usage:**
-- **Lambda**: 1M requests/month + 400,000 GB-seconds
-- **API Gateway**: 1M API calls/month
-- **DynamoDB**: 25GB storage + 25 RCU/WCU
-- **CloudWatch**: 5GB logs + 10 custom metrics
-
-**Estimated Monthly Cost (beyond free tier):**
-- Lambda: ~$0.20 per 1M requests
-- API Gateway: ~$3.50 per 1M requests
-- DynamoDB: ~$1.25 per 1M requests
 
 ## 🔧 Configuration
 
@@ -280,77 +255,3 @@ Update `.env` and `infrastructure/variables.tf`:
 AWS_REGION=us-west-2
 TF_VAR_aws_region=us-west-2
 ```
-
-## 🐛 Troubleshooting
-
-### Common Issues
-
-1. **AWS Credentials Not Found**
-   ```bash
-   aws configure
-   aws sts get-caller-identity  # Verify credentials
-   ```
-
-2. **Terraform State Lock**
-   ```bash
-   cd infrastructure
-   terraform force-unlock <lock-id>
-   ```
-
-3. **Lambda Package Too Large**
-   ```bash
-   # Check package size
-   ls -lh dist/lambda_function.zip
-   # Should be < 50MB
-   ```
-
-4. **DynamoDB Access Denied**
-   - Verify IAM permissions in `infrastructure/main.tf`
-   - Check Lambda execution role
-
-### Logs and Debugging
-
-```bash
-# View Lambda logs
-aws logs describe-log-groups --log-group-name-prefix "/aws/lambda/parking-lot-system"
-
-# Tail logs in real-time
-aws logs tail /aws/lambda/parking-lot-system-entry --follow
-
-# Test Lambda function locally
-cd src
-python -c "
-from handlers.entry import lambda_handler
-event = {'queryStringParameters': {'plate': 'TEST123', 'parkingLot': '1'}}
-print(lambda_handler(event, {}))
-"
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/new-feature`
-3. Make changes and add tests
-4. Run tests: `pytest`
-5. Commit changes: `git commit -am 'Add new feature'`
-6. Push to branch: `git push origin feature/new-feature`
-7. Submit a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 🆘 Support
-
-For issues and questions:
-
-1. Check the [Troubleshooting](#-troubleshooting) section
-2. Search existing [GitHub Issues](../../issues)
-3. Create a new issue with:
-   - Error messages
-   - Steps to reproduce
-   - Environment details (OS, Python version, AWS region)
-
----
-
-**⚠️ Important Security Note**: Never commit AWS credentials or sensitive data to version control. Always use environment variables or AWS IAM roles for authentication. 
