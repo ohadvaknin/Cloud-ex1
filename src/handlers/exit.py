@@ -1,9 +1,9 @@
 import logging
 from typing import Dict, Any
 
-from services.parking_service import ParkingService
-from utils.response import success_response, validation_error_response, not_found_response, internal_error_response
-from utils.validation import validate_ticket_id, extract_query_params
+from src.services.parking_service import ParkingService
+from src.utils.response import success_response, validation_error_response, not_found_response, internal_error_response
+from src.utils.validation import validate_ticket_id, extract_query_params
 
 # Configure logging
 logger = logging.getLogger()

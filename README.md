@@ -1,6 +1,6 @@
 # Cloud-Based Parking Lot Management System
 
-A serverless parking lot management system built with Python 3.12, AWS Lambda, API Gateway, and DynamoDB. Features automated fee calculation, and CI/CD pipeline.
+A serverless parking lot management system built with Python 3.12, AWS Lambda, API Gateway, and DynamoDB. Features automated fee calculation.
 
 ## 🏗️ Architecture
 
@@ -38,7 +38,6 @@ graph TB
 - **Automated Fee Calculation**: $10/hour, prorated every 15 minutes
 - **Production Ready**: Comprehensive error handling, logging, and monitoring
 - **High Test Coverage**: with pytest
-- **CI/CD Pipeline**: GitHub Actions with automated testing and deployment
 - **Infrastructure as Code**: Terraform
 - **Security**: Input validation, no hardcoded credentials
 
@@ -129,15 +128,12 @@ source venv/bin/activate
 
 # Install dependencies
 pip install -r requirements-dev.txt
-
-# Install pre-commit hooks
-pre-commit install
 ```
 
 ### Run Tests
 
 ```bash
-# Run all tests with coverage
+# Run all tests
 pytest
 
 # Run specific test file
@@ -190,23 +186,6 @@ The system uses a modular fee calculator with the following rules:
 - **CORS Enabled**: Proper CORS headers for web applications
 - **Error Handling**: Secure error messages without sensitive information
 
-## 🚀 CI/CD Pipeline
-
-The GitHub Actions pipeline includes:
-
-1. **Testing**: Unit tests, integration tests, coverage reporting
-2. **Code Quality**: Linting, formatting, security scanning
-3. **Security**: Bandit security analysis
-4. **Deployment**: Automated deployment to AWS on main branch
-5. **Verification**: Post-deployment API testing
-
-### Required GitHub Secrets
-
-```bash
-AWS_ACCESS_KEY_ID=your-access-key
-AWS_SECRET_ACCESS_KEY=your-secret-key
-```
-
 ## 📈 Monitoring and Logging
 
 - **CloudWatch Logs**: All Lambda function logs with 14-day retention
@@ -214,10 +193,9 @@ AWS_SECRET_ACCESS_KEY=your-secret-key
 - **Metrics**: Built-in Lambda metrics (duration, errors, throttles)
 - **Alarms**: Can be configured for error rates and latency
 
-
 ## 🔧 Configuration
 
-### Customizing Fee Calculation - examples
+### Customizing Fee Calculation
 
 Edit `infrastructure/variables.tf`:
 
@@ -238,4 +216,16 @@ Update `.env` and `infrastructure/variables.tf`:
 ```bash
 AWS_REGION=us-west-2
 TF_VAR_aws_region=us-west-2
+```
+
+### Environment Variables
+
+```bash
+# Application Configuration
+PARKING_TABLE_NAME=parking-tickets
+HOURLY_RATE=10.0
+BILLING_INCREMENT_MINUTES=15
+
+# AWS Configuration  
+AWS_REGION=eu-north-1
 ```
